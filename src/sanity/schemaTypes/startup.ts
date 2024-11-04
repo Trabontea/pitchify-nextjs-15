@@ -8,6 +8,10 @@ export const startup = defineType({
 
   fields:[
     defineField({
+      name: 'title',
+      type: 'string'
+    }),
+    defineField({
       name: 'slug',
       type: 'slug',
       options: {
