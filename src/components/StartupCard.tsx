@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Author, Startup } from '@/sanity/types';
 // import { Skeleton } from "@/components/ui/skeleton";
 
-export type StartupTypeCard = Omit<Startup, 'author'> & { author?: Author };
+ export type StartupTypeCard =Omit<Startup, "author"> & { author?: Author };
 
 function StartupCard({ post }: { post: StartupTypeCard }) {
   const {
@@ -39,8 +39,13 @@ function StartupCard({ post }: { post: StartupTypeCard }) {
           </Link>
         </div>
         <Link href={`/user/${author?._id}`}>
+          @ts-expect-error
           <Image
+            
+            // @ts-ignore
             src={author?.image}
+            
+            // @ts-ignore
             alt={author?.name}
             width={48}
             height={48}

@@ -20,11 +20,12 @@ export default async function Home({
   // introducem params in fetch
   const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
 
+
   return (
     <>
       <section className="pink_container">
         <h1 className="heading">
-          Pitch your Startup, <br /> connect with entrpreneurs
+          Pitch your Startup, <br /> connect with entrepreneurs
         </h1>
         <p className="sub-heading !max-w-3xl">
           Submit ideas, vote on pitches, and get Noticed in Virtual Competitions
@@ -40,6 +41,8 @@ export default async function Home({
 
         <ul className="mt-7 card_grid">
           {posts?.length > 0 ? (
+            
+            // @ts-ignore
             posts.map((post: StartupTypeCard) => (
               <StartupCard key={post?._id} post={post} />
             ))
