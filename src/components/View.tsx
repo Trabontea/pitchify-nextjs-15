@@ -5,6 +5,8 @@ import { STARTUP_VIEWS_QUERY } from "@/sanity/lib/queries";
 // import { unstable_after as after } from "next/server";
 
 const View = async ({ id }: { id: string }) => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const { views: totalViews } = await client
     .withConfig({ useCdn: false })
     .fetch(STARTUP_VIEWS_QUERY, { id });
