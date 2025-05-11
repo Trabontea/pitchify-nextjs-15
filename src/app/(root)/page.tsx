@@ -20,7 +20,6 @@ export default async function Home({
   // introducem params in fetch
   const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
 
-
   return (
     <>
       <section className="pink_container">
@@ -41,10 +40,8 @@ export default async function Home({
 
         <ul className="mt-7 card_grid">
           {posts?.length > 0 ? (
-            
-            // @ts-ignore
-            posts.map((post: StartupTypeCard) => (
-              <StartupCard key={post?._id} post={post} />
+            posts.map((post) => (
+              <StartupCard key={post._id} post={post as StartupTypeCard} />
             ))
           ) : (
             <p className="no-results"> No startups found</p>

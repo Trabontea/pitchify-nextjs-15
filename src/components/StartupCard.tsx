@@ -1,4 +1,4 @@
-import { cn, formatDate } from '@/lib/utils';
+import { formatDate } from '@/lib/utils';
 import { EyeIcon } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Author, Startup } from '@/sanity/types';
 // import { Skeleton } from "@/components/ui/skeleton";
 
- export type StartupTypeCard =Omit<Startup, "author"> & { author?: Author };
+export type StartupTypeCard = Omit<Startup, 'author'> & { author?: Author };
 
 function StartupCard({ post }: { post: StartupTypeCard }) {
   const {
@@ -39,14 +39,9 @@ function StartupCard({ post }: { post: StartupTypeCard }) {
           </Link>
         </div>
         <Link href={`/user/${author?._id}`}>
-          @ts-expect-error
           <Image
-            
-            // @ts-ignore
-            src={author?.image}
-            
-            // @ts-ignore
-            alt={author?.name}
+            src={author?.image ?? '/placeholder-user.png'}
+            alt={author?.name ?? 'User'}
             width={48}
             height={48}
             className="rounded-full"
@@ -57,7 +52,13 @@ function StartupCard({ post }: { post: StartupTypeCard }) {
       <Link href={`/startup/${_id}`}>
         <p className="startup-card_desc">{description}</p>
 
-        <img src={image} alt="placeholder" className="startup-card_img" />
+        <Image
+          src={image ?? '/placeholder-startup.png'}
+          alt={title ?? 'Startup Image'}
+          width={1000}
+          height={500}
+          className="startup-card_img"
+        />
       </Link>
 
       <div className="flex-between gap-3 mt-5">
