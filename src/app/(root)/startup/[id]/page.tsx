@@ -38,8 +38,8 @@ const PagePitch = async ({ params }: { params: Promise<{ id: string }> }) => {
 
       <section className="section_container ">
         <Image
-          src={post.image}
-          alt={post.title}
+          src={post.image || '/fallback-image.jpg'}
+          alt={post.title ?? 'Startup image'}
           width={400}
           height={170}
           className="w-6/12 h-auto rounded-xl mx-auto"
@@ -52,7 +52,7 @@ const PagePitch = async ({ params }: { params: Promise<{ id: string }> }) => {
               className="flex gap-2 items-center mb-3"
             >
               <Image
-                src={post.author.image}
+                src={post.author?.image || '/default-avatar.jpg'}
                 alt="avatar"
                 width={64}
                 height={64}
@@ -60,9 +60,13 @@ const PagePitch = async ({ params }: { params: Promise<{ id: string }> }) => {
               />
 
               <div>
-                <p className="text-20-medium">{post.author.name}</p>
+                <p className="text-20-medium">
+                  {post.author?.name ?? 'Anonymous'}
+                </p>
                 <p className="text-16-medium !text-black-300">
-                  @{post.author.username || ' N/A'}
+                  @
+                  {post.author?.name?.toLowerCase().replace(/\s+/g, '') ??
+                    'N/A'}
                 </p>
               </div>
             </Link>
